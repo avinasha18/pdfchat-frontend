@@ -41,7 +41,7 @@ const Chat = () => {
 
       try {
         // Upload the file
-        await axios.post("http://localhost:8000/upload/", formData, {
+        await axios.post("/upload/", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -49,7 +49,7 @@ const Chat = () => {
 
         // Submit the question
         const response = await axios.post(
-          "http://localhost:8000/ask/",
+          "/ask/",
           { question: currentQuestion },
           {
             headers: {

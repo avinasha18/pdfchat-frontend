@@ -17,7 +17,7 @@ const Chat = () => {
     setFile(files[0]);
     setFileName(files[0].name);
   };
-  const BASE_URL = "http://13.126.126.153:8000"; // Replace YOUR_EC2_PUBLIC_IP with the public IP of your EC2 instance
+  const BASE_URL = "https://13.126.126.153:8000"; // Replace YOUR_EC2_PUBLIC_IP with the public IP of your EC2 instance
 
   const handleRemoveFile = () => {
     setFile(null);

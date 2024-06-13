@@ -85,9 +85,10 @@ export const MainChatContent = styled.div`
 `;
 
 export const ContentHeader = styled.div`
-  padding-bottom: 15px;
+  padding-bottom: 5px;
   border-bottom: 1px solid #ebe7fb;
   display: flex;
+  margin-bottom : 12px;
   justify-content: space-between;
   align-items: center;
   @media ${media.phone}{
@@ -173,13 +174,13 @@ export const OtherChatItem = styled(ChatItem)`
 
 export const AvatarItem = styled.div`
   ${props=> props.isUser ? `
-    margin-left: 0px;
+    margin-left: 10px;
      margin-right: 0px;
     
      `:
      `
      margin-left :0px;
-     margin-right : 0px;
+     margin-right : 10px;
      `
   }
  

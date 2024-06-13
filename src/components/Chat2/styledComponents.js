@@ -173,16 +173,14 @@ export const OtherChatItem = styled(ChatItem)`
 `;
 
 export const AvatarItem = styled.div`
-  ${props=> props.isUser ? `
+  ${props => props.isUser ? `
     margin-left: 10px;
-     margin-right: 0px;
-    
-     `:
-     `
-     margin-left :0px;
-     margin-right : 10px;
-     `
-  }
+    margin-right: 0px;
+  ` : `
+    margin-left: 0px;
+    margin-right: 10px;
+  `}
+`;
  
   
 `;

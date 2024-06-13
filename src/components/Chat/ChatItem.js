@@ -6,8 +6,8 @@ import { ChatItemContentItem,ChatItemContainer,AvatarItem,ChatMsg } from "./styl
 const ChatItem = ({ user, msg }) => {
   return (
     <ChatItemContainer >
-      <ChatItemContentItem >
-        <ChatMsg>{msg}</ChatMsg>
+      <ChatItemContentItem iUser={user === 'user'}>
+        <ChatMsg isUser={user === 'user'}>{msg}</ChatMsg>
       </ChatItemContentItem>
       <AvatarItem isUser={user === 'user'}>
         {user === "user" ? <FaUser /> : <RiRobot2Fill />}

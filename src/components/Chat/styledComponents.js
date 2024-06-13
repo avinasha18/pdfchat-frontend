@@ -138,7 +138,7 @@ export const ChatItemContainer = styled.div`
   transition: all 0.3s ease;
   transform: scale(0);
   animation: ${showIn} 0.2s cubic-bezier(0.88, 0.19, 0.37, 1.11) both 0.2s;
-  ${props => props.isUser ? `
+  ${props => !props.isUser ? `
     transform-origin: right;
     flex-direction: row;
   ` : `
@@ -148,17 +148,17 @@ export const ChatItemContainer = styled.div`
 `;
 
 export const ChatItemContentItem = styled.div`
-  background-color: ${props => props.isUser ? '#4462ff' : '#f1f1f1f1'};
+  background-color: ${props => !props.isUser ? '#4462ff' : '#f1f1f1f1'};
   color: ${props => props.isUser ? '#fff' : '#000'};
   padding: 15px;
-  border-radius: ${props => props.isUser ? '10px 10px 10px 0' : '10px 10px 0 10px'};
+  border-radius: ${props => !props.isUser ? '10px 10px 10px 0' : '10px 10px 0 10px'};
   max-width: 50%;
   min-width: 215px;
   @media ${media.phone} {
     min-width: 80px;
     max-width: 50%;
     padding: 8px;
-    ${props => props.isUser ? `
+    ${props => !props.isUser ? `
       margin-left: 5px;
     ` : `
       margin-right: 5px;
@@ -167,7 +167,7 @@ export const ChatItemContentItem = styled.div`
 `;
 
 export const AvatarItem = styled.div`
-  ${props => props.isUser ? `
+  ${props => !props.isUser ? `
     margin-left: 10px;
     margin-right: 0px;
   ` : `

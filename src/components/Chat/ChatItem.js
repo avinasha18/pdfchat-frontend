@@ -5,11 +5,11 @@ import { ChatItemContentItem,ChatItemContainer,AvatarItem,ChatMsg } from "./styl
 
 const ChatItem = ({ user, msg }) => {
   return (
-    <ChatItemContainer className={`chat__item ${user === "ai" ? "other" : ""}`}>
+    <ChatItemContainer >
       <ChatItemContentItem >
         <ChatMsg>{msg}</ChatMsg>
       </ChatItemContentItem>
-      <AvatarItem isUser={user === user}>
+      <AvatarItem isUser={user === 'user'}>
         {user === "user" ? <FaUser /> : <RiRobot2Fill />}
       </AvatarItem>
     </ChatItemContainer>

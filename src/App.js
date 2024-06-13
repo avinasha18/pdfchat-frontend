@@ -1,4 +1,4 @@
-import Chat from './components/Chat2'
+import Chat from './components/Chat'
 
 const App = ()=> {
   return(

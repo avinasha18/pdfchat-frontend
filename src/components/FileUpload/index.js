@@ -4,12 +4,14 @@ import {
   FormField,
   DragDropText,
   UploadFileBtn,
-  InputLabel
-} from "./styledComponents";
+  InputLabel,
+  ErrorMessage
+} from "./styledComponents"; // Assuming ErrorMessage is a styled component for error messages
 
 const FileUpload = ({ label, updateFilesCb, ...otherProps }) => {
   const fileInputField = useRef(null);
   const [files, setFiles] = useState({});
+  const [error, setError] = useState("");
 
   const handleUploadBtnClick = () => {
     fileInputField.current.click();
@@ -33,10 +35,21 @@ const FileUpload = ({ label, updateFilesCb, ...otherProps }) => {
 
   const handleNewFileUpload = (e) => {
     const { files: newFiles } = e.target;
-    if (newFiles.length) {
+    let invalidFiles = false;
+    const allowedTypes = ["application/pdf"]; // Allowed file types
+
+    Array.from(newFiles).forEach((file) => {
+      if (!allowedTypes.includes(file.type)) {
+        invalidFiles = true;
+        setError(`Error: ${file.name} is not a PDF file.`);
+      }
+    });
+
+    if (!invalidFiles) {
       let updatedFiles = addNewFiles(newFiles);
       setFiles(updatedFiles);
       callUpdateFilesCb(updatedFiles);
+      setError(""); // Clear error message if no invalid files
     }
   };
 
@@ -58,6 +71,7 @@ const FileUpload = ({ label, updateFilesCb, ...otherProps }) => {
           {...otherProps}
         />
       </FileUploadContainer>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </>
   );
 };

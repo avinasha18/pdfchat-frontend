@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {ThreeDots} from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner";
 import ChatItem from "./ChatItem";
 import FileUpload from "../FileUpload";
-import "./index.css";
-import { PdfUpload,Navbar,FileInfo,Logo } from "./styledComponents";
+import { PdfUpload, Filenname, DeleteButton, SendMessageButton, SendMessageInput, SendMessageIcon, Navbar, FileInfo, Logo, MainChatContent, ContentHeader, CurrentChattingUser, ContentBody, ContentFooter, SendNewMessage, SendMsgBtn, ErrorMessage } from "./styledComponents";
 
 const Chat = () => {
   const [file, setFile] = useState(null);
@@ -12,6 +11,7 @@ const Chat = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState("");
   const [loading, setLoading] = useState(false); // State to handle loading spinner
+  const [error, setError] = useState(null); // State to handle API errors
 
   const updateFiles = (files) => {
     setFile(files[0]);
@@ -23,6 +23,7 @@ const Chat = () => {
     setFileName("");
     setQuestions([]);
     setCurrentQuestion("");
+    setError(null); // Clear any previous errors
   };
 
   const handleQuestionSubmit = async (e) => {
@@ -65,6 +66,7 @@ const Chat = () => {
         ]);
       } catch (error) {
         console.error("Error uploading files or asking question:", error);
+        setError("Failed to submit question. Please try again later."); // Set error message
       } finally {
         setLoading(false); // Hide loading spinner
       }
@@ -73,7 +75,7 @@ const Chat = () => {
 
   return (
     <>
-    <Navbar>
+      <Navbar>
         <Logo src="ai.svg" alt="Company Logo" />
         {fileName && (
           <FileInfo>
@@ -81,7 +83,7 @@ const Chat = () => {
           </FileInfo>
         )}
       </Navbar>
-        
+
       {!file && (
         <PdfUpload>
           <FileUpload
@@ -92,67 +94,62 @@ const Chat = () => {
           />
         </PdfUpload>
       )}
-{
-  file && (
- 
-      <div className="main__chatcontent">
-        <div className="content__header">
-          <div className="blocks">
-            <div className="current-chatting-user">
-              <h1>Ask your Pdf</h1>
-            </div>
-          </div>
-          {fileName && (
-            <div className="file-info">
-              <span>{fileName}</span>
-              <button  onClick={handleRemoveFile}>
-            <i class="fa-solid fa-trash"/>
-            </button>         
-            </div>
-          )}
-        </div>
-        <div className="content__body">
-          <div className="chat__items">
-            {questions.map((question, index) => (
-              <ChatItem
-                key={index}
-                animationDelay={index + 2}
-                user={question.user}
-                msg={question.text}
-              />
-            ))}
-            {loading && (
-              <div style={{ textAlign: "center" }}>
-                <ThreeDots  color="#00BFFF" height={30} width={30} />
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="content__footer">
-        <form onSubmit={handleQuestionSubmit}>
-            <div className="sendNewMessage">
-              <input
-                type="text"
-                value={currentQuestion}
-                onChange={(e) => setCurrentQuestion(e.target.value)}
-                placeholder="Ask a question about the PDF..."
-                aria-label="Type your question here"
-              />
-              <button
-                className="btnSendMsg"
-                id="sendMsgBtn"
-                type="submit"
-              >
-                <i className="fa fa-paper-plane"></i>
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-         
-  )
 
-}
+      {file && (
+        <MainChatContent>
+          <ContentHeader>
+            <div className="blocks">
+              <CurrentChattingUser>
+                <h1>Ask your Pdf</h1>
+              </CurrentChattingUser>
+            </div>
+            {fileName && (
+              <FileInfo>
+                <Filenname>{fileName}</Filenname>
+                <DeleteButton onClick={handleRemoveFile}>
+                  <i className="fa-solid fa-trash" />
+                </DeleteButton>
+              </FileInfo>
+            )}
+          </ContentHeader>
+          <ContentBody>
+            <div className="chat__items">
+              {questions.map((question, index) => (
+                <ChatItem
+                  key={index}
+                  animationDelay={index + 2}
+                  user={question.user}
+                  msg={question.text}
+                />
+              ))}
+              {loading && (
+                <div style={{ textAlign: "center" }}>
+                  <ThreeDots color="#00BFFF" height={30} width={30} />
+                </div>
+              )}
+              {error && (
+                <ErrorMessage>{error}</ErrorMessage>
+              )}
+            </div>
+          </ContentBody>
+          <ContentFooter>
+            <form onSubmit={handleQuestionSubmit}>
+              <SendNewMessage>
+                <SendMessageInput
+                  type="text"
+                  value={currentQuestion}
+                  onChange={(e) => setCurrentQuestion(e.target.value)}
+                  placeholder="Ask a question about the PDF..."
+                  aria-label="Type your question here"
+                />
+                <SendMessageButton type="submit">
+                  <SendMessageIcon className="fa fa-paper-plane" />
+                </SendMessageButton>
+              </SendNewMessage>
+            </form>
+          </ContentFooter>
+        </MainChatContent>
+      )}
     </>
   );
 };

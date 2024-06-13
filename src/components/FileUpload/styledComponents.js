@@ -11,6 +11,13 @@ export const FileUploadContainer = styled.section`
   align-items: center;
   background-color: white;
 `;
+export const ErrorMessage = styled.p`
+  font-size : 15px;
+  position : fixed ;
+  bottom : 5%;
+  font-family : calibri;
+  color : red;
+`
 
 export const FormField = styled.input`
   font-size: 18px;

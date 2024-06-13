@@ -1,24 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import { FaUser } from "react-icons/fa";
 import { RiRobot2Fill } from "react-icons/ri";
+import { ChatItemContentItem,ChatItemContainer,AvatarItem,ChatMsg } from "./styledComponents";
 
-export default class ChatItem extends Component {
-  render() {
-    return (
-        <div
-          style={{ animationDelay: `0.8s` }}
-          className={`chat__item ${this.props.user === "ai" ? "other" : ""}`}
-        >
-          <div className="chat__item__content">
-            <div className="chat__msg">{this.props.msg}</div>
-            
-          </div>
-          {
-            this.props.user === "user" ?<FaUser/>:<RiRobot2Fill/>
-          }
-          
-        </div>
-      );
-   
-  }
-}
+const ChatItem = ({ user, msg }) => {
+  return (
+    <ChatItemContainer className={`chat__item ${user === "ai" ? "other" : ""}`}>
+      <ChatItemContentItem >
+        <ChatMsg>{msg}</ChatMsg>
+      </ChatItemContentItem>
+      <AvatarItem isUser={user === user}>
+        {user === "user" ? <FaUser /> : <RiRobot2Fill />}
+      </AvatarItem>
+    </ChatItemContainer>
+  );
+};
+
+export default ChatItem;

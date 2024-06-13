@@ -17,7 +17,6 @@ const Chat = () => {
     setFile(files[0]);
     setFileName(files[0].name);
   };
-  const BASE_URL = "https://13.126.126.153:8000"; // Replace YOUR_EC2_PUBLIC_IP with the public IP of your EC2 instance
 
   const handleRemoveFile = () => {
     setFile(null);
@@ -42,7 +41,7 @@ const Chat = () => {
 
       try {
         // Upload the file
-        await axios.post(`${BASE_URL}/upload/`, formData, {
+        await axios.post('https://pdfchat-backend.onrender.com/upload/', formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -50,7 +49,7 @@ const Chat = () => {
 
         // Submit the question
         const response = await axios.post(
-          `${BASE_URL}/ask/`,
+          '$https://pdfchat-backend.onrender.com/ask/',
           { question: currentQuestion },
           {
             headers: {

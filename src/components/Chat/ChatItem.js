@@ -9,7 +9,7 @@ const ChatItem = ({ user, msg }) => {
       <ChatItemContentItem >
         <ChatMsg>{msg}</ChatMsg>
       </ChatItemContentItem>
-      <AvatarItem isUser={user === user}>
+      <AvatarItem isUser={user === 'user'}>
         {user === "user" ? <FaUser /> : <RiRobot2Fill />}
       </AvatarItem>
     </ChatItemContainer>

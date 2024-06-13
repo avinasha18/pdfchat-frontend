@@ -32,7 +32,7 @@ const Chat = () => {
       const formData = new FormData();
       formData.append("files", file);
 
-      // Add the user's question to the chat immediately
+    
       setQuestions((prevQuestions) => [
         ...prevQuestions,
         { text: currentQuestion, user: "user" },
@@ -59,7 +59,7 @@ const Chat = () => {
           }
         );
 
-        // Update the chat with the AI's response
+        // Update the chat with the AI's response from Gemini
         setQuestions((prevQuestions) => [
           ...prevQuestions,
           { text: response.data.reply, user: "ai" },

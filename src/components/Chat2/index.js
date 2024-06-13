@@ -49,7 +49,7 @@ const Chat = () => {
 
         // Submit the question
         const response = await axios.post(
-          '$https://pdfchat-backend.onrender.com/ask/',
+          'https://pdfchat-backend.onrender.com/ask/',
           { question: currentQuestion },
           {
             headers: {

@@ -41,14 +41,14 @@ const Chat = () => {
       setCurrentQuestion(""); // Clear the input field
 
       try {
-        //post req to the backend api uploading pdf formdata
+        // Upload the file
         await axios.post('https://pdfchat-backend.onrender.com/upload/', formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
 
-        // post req with question from user
+        // Submit the question
         const response = await axios.post(
           'https://pdfchat-backend.onrender.com/ask/',
           { question: currentQuestion },
@@ -59,7 +59,7 @@ const Chat = () => {
           }
         );
 
-        // Update the chat with the Gemini AI's response
+        // Update the chat with the AI's response
         setQuestions((prevQuestions) => [
           ...prevQuestions,
           { text: response.data.reply, user: "ai" },

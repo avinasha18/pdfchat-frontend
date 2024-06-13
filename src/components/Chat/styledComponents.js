@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled ,{keyframes} from 'styled-components';
 
 const sizes = {
   desktop: 1024,
@@ -12,6 +12,7 @@ const media = {
   phone: `(max-width: ${sizes.phone}px)`,
 };
 
+
 export const Navbar = styled.div`
   display: flex;
   align-items: center;
@@ -19,56 +20,50 @@ export const Navbar = styled.div`
   padding: 10px 20px;
   background-color: rgb(0, 49, 69);
   color: white;
-  @media ${media.phone} {
-    padding: 5px 5px;
+  @media ${media.phone}{
+    padding : 5px 5px;
   }
 `;
 
 export const Logo = styled.img`
   height: 50px;
   margin: 10px;
-  @media ${media.phone} {
-    height: 40px;
-    padding: 2px;
+   @media ${media.phone}{
+    height : 40px;
+    padding : 2px;
   }
-`;
-
-export const PdfUpload = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  margin-top: 180px;
 `;
 
 export const FileInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  border: 2px solid #f1f1f1;
-  padding: 10px;
-  border-radius: 8px;
-  margin-right: 10px;
-  @media ${media.phone} {
-    padding: 7px;
-    font-size: 12px;
-    color: #fff;
-    border-radius: 13px;
-    border: 1px ridge grey;
-    margin-right: 5px;
+  border : 2px solid #f1f1f1;
+  padding : 10px;
+  border-radius : 8px;
+  margin-right : 10px;
+  @media ${media.phone}{
+    padding : 7px;
+    font-size : 12px;
+    color : #fff;
+    border-radius : 13px;
+    border :1px ridge grey;
+    margin-right : 5px;
   }
 `;
 
 export const ErrorMessage = styled.p`
-  font-size: 15px;
-  font-family: calibri;
-  color: red;
-`;
-
+  font-size : 15px;
+  font-family : calibri;
+  color : red;
+  font-family : calibri;
+  
+`
 export const RemoveIcon = styled.i`
   cursor: pointer;
 `;
 
+// Defined keyframes for animations
 const showIn = keyframes`
   0% {
     transform: scale(0);
@@ -93,27 +88,26 @@ export const ContentHeader = styled.div`
   padding-bottom: 5px;
   border-bottom: 1px solid #ebe7fb;
   display: flex;
-  margin-bottom: 12px;
+  margin-bottom : 12px;
   justify-content: space-between;
   align-items: center;
-  @media ${media.phone} {
-    padding-bottom: 4px;
-    margin-bottom: 7px;
+  @media ${media.phone}{
+    padding-bottom : 4px;
+    margin-bottom : 7px;
   }
 `;
 
 export const CurrentChattingUser = styled.div`
   display: flex;
   align-items: center;
-  @media ${media.phone} {
-    font-size: 9px;
+  @media ${media.phone}{
+    font-size : 9px;
   }
 `;
-
 export const Filenname = styled.span`
-  color: rgb(0, 49, 69);
-  @media ${media.phone} {
-    font-size: 11px;
+  color : rgb(0, 49, 69);
+  @media ${media.phone}{
+    font-size : 11px;
   }
 `;
 
@@ -122,52 +116,64 @@ export const CurrentChattingUserText = styled.p`
   font-weight: 500;
 `;
 
+
+
 export const ContentBody = styled.div`
   max-height: calc(100vh - calc(100vh / 2));
   overflow: auto;
-  @media ${media.phone} {
-    max-height: 60vh;
+  @media ${media.phone}{
+    max-height : 60vh;
+ 
   }
 `;
 
-export const ChatItemContainer = styled.div`
+export const ChatItem = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   margin-bottom: 15px;
   transition: all 0.3s ease;
   transform: scale(0);
+  transform-origin: right;
   animation: ${showIn} 0.2s cubic-bezier(0.88, 0.19, 0.37, 1.11) both 0.2s;
-  ${props => !props.isUser ? `
-    transform-origin: right;
-    flex-direction: row;
-  ` : `
-    transform-origin: left;
-    flex-direction: row-reverse;
-  `}
 `;
 
 export const ChatItemContentItem = styled.div`
-  background-color: ${props => !props.isUser ? '#4462ff' : '#f1f1f1f1'};
-  color: ${props => props.isUser ? '#fff' : '#000'};
+  background-color: #4462ff;
+  color: #fff;
   padding: 15px;
-  border-radius: ${props => !props.isUser ? '10px 10px 10px 0' : '10px 10px 0 10px'};
+  border-radius: 10px 10px 0 10px;
   max-width: 50%;
   min-width: 215px;
-  @media ${media.phone} {
-    min-width: 80px;
-    max-width: 50%;
-    padding: 8px;
-    ${props => !props.isUser ? `
-      margin-left: 5px;
-    ` : `
-      margin-right: 5px;
-    `}
-  }
+
+  ${(props) =>
+    props.isOther &&
+    `
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px 10px 10px 0;
+    @media ${media.phone}{
+      min-width : 80px;
+      max-width : 50%;
+      padding : 8px;
+      margin-left : 5px;
+    }
+  `}
+  @media ${media.phone}{
+      min-width : 80px;
+      max-width : 50%;
+      padding : 8px;
+      margin-right : 5px;
+    }
+`;
+
+export const OtherChatItem = styled(ChatItem)`
+  flex-direction: row-reverse;
+  transform-origin: left;
 `;
 
 export const AvatarItem = styled.div`
-  ${props => !props.isUser ? `
+  ${props => props.isUser ? `
     margin-left: 10px;
     margin-right: 0px;
   ` : `
@@ -175,19 +181,21 @@ export const AvatarItem = styled.div`
     margin-right: 10px;
   `}
 `;
+ 
+  
+
 
 export const ContentFooter = styled.div`
   padding-top: 30px;
 `;
 
 export const DeleteButton = styled.button`
-  border: none;
-  background: none;
-  @media ${media.phone} {
-    margin: 0px;
+  border : none;
+  background : none;
+  @media ${media.phone}{
+    margin : 0px;
   }
-`;
-
+`
 export const SendButton = styled.button`
   width: 36px;
   height: 36px;
@@ -216,10 +224,10 @@ export const InputField = styled.input`
   flex-grow: 1;
   padding: 0 15px;
   background-color: transparent;
-  border: 2px ridged black;
+  border: none;
   outline: none;
-  @media ${media.phone} {
-    padding: 0px;
+  @media ${media.phone}{
+    padding : 0px;
   }
 `;
 
@@ -227,6 +235,7 @@ export const SendMsgBtn = styled.button`
   background-color: #3b5bfe;
   color: #fff;
 `;
+
 
 export const ChatListItem = styled.div`
   display: flex;
@@ -244,6 +253,17 @@ export const ChatListItem = styled.div`
   }
 `;
 
+
+export const PdfUpload = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-top: 180px;
+`;
+
+
+
 export const SendNewMessage = styled.div`
   background-color: #fff;
   display: flex;
@@ -256,6 +276,7 @@ export const SendNewMessage = styled.div`
   width: 70%;
 
   @media (max-width: 768px) {
+    /* Adjust styles for smaller screens if needed */
     width: 90%;
     left: 5%;
   }
@@ -281,15 +302,6 @@ export const SendMessageButton = styled.button`
   }
 `;
 
-export const Avatar = styled.div`
-  margin-right: 20px;
-  margin-left: 0px;
-`;
-
-export const ChatMsg = styled.div`
-  font-size: 16px;
-`;
-
 export const SendMessageIcon = styled.i`
   display: block;
 `;
@@ -301,3 +313,47 @@ export const SendMessageInput = styled.input`
   border: none;
   outline: none;
 `;
+
+
+export const ChatItemContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+  transform: scale(0);
+  transform-origin: right;
+  animation: ${showIn} 0.2s cubic-bezier(0.88, 0.19, 0.37, 1.11) both;
+  animation-delay: 0.2s;
+
+  &.other {
+    flex-direction: row-reverse;
+    transform-origin: left;
+  }
+`;
+
+export const ChatItemContent = styled.div`
+  background-color: #4462ff;
+  color: #fff;
+  padding: 15px;
+  border-radius: 10px 10px 0 10px;
+  max-width: 50%;
+  min-width: 215px;
+
+  &.other {
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px 10px 10px 0;
+  }
+`;
+
+export const Avatar = styled.div`
+  margin-right: 20px;
+  margin-left: 0px;
+`;
+
+export const ChatMsg = styled.div`
+  font-size: 16px;
+`;
+
+

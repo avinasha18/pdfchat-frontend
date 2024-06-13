@@ -183,7 +183,7 @@ export const AvatarItem = styled.div`
 `;
  
   
-`;
+
 
 export const ContentFooter = styled.div`
   padding-top: 30px;
